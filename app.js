@@ -15,7 +15,7 @@ const app = express();
 require("./config")(app);
 
 // 👇 Start handling routes here
-app.use("/movie", require("./routes/index.routes"));
+app.use("/movie", require("./routes/movie.routes"));
 
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);

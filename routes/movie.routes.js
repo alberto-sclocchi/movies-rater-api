@@ -23,4 +23,19 @@ router.post("/", (req, res, next) => {
   })
 });
 
+
+router.delete("/:id", (req, res, next) => {
+
+  console.log(req.params.id);
+
+  Movie.findByIdAndDelete(req.params.id)
+  .then((unaddedMovie) => {
+    res.json({success: true, result: unaddedMovie})
+  })
+  .catch((err) => {
+    res.json({success: false, error: err})
+  })
+});
+
+
 module.exports = router;
