@@ -37,5 +37,18 @@ router.delete("/:id", (req, res, next) => {
   })
 });
 
+router.get("/:id", (req, res, next) => {
+
+  console.log(req.params.id);
+
+  Movie.findById(req.params.id)
+  .then((movie) => {
+    res.json({success: true, result: movie})
+  })
+  .catch((err) => {
+    res.json({success: false, error: err})
+  })
+});
+
 
 module.exports = router;
