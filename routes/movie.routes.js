@@ -50,5 +50,16 @@ router.get("/:id", (req, res, next) => {
   })
 });
 
+router.patch("/:id", (req, res, next) => {
+
+  Movie.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then((updatedMovie) => {
+      res.json({ success: true, result: updatedMovie });
+    })
+    .catch((err) => {
+      res.json({ success: false, error: err });
+    });
+});
+
 
 module.exports = router;
