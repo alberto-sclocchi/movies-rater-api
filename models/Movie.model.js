@@ -19,8 +19,8 @@ const movieSchema = new Schema(
       type: String
     },
     rating:{
-        type: String,
-        default: "-"
+        type: Number,
+        default: 0,
     },
     cast:[{
         type: String

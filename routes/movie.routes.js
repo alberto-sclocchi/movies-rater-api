@@ -51,6 +51,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.patch("/:id", (req, res, next) => {
+  console.log(req.body);
 
   Movie.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then((updatedMovie) => {
