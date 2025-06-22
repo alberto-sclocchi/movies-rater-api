@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Movie = require("../models/Movie.model");
 
-router.get("/", (req, res, next) => {
-  Movie.find()
+router.get("/:userId", (req, res, next) => {
+  console.log(req.params);
+
+  Movie.find({user: req.params.userId}).populate("user")
   .then((movies) => {
     res.json({success: true, result: movies})
   })
@@ -37,7 +39,7 @@ router.delete("/:id", (req, res, next) => {
   })
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/details/:id", (req, res, next) => {
 
   console.log(req.params.id);
 

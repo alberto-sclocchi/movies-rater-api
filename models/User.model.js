@@ -13,10 +13,6 @@ const userSchema = new Schema(
     },
     username: {
       type: String,
-    },
-    moviesAdded: {
-      type: Schema.Types.ObjectId,
-      ref: "Movie"
     }
   },
   {

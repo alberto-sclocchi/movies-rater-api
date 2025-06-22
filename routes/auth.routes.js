@@ -22,7 +22,7 @@ router.post("/signup", (req, res, next) => {
 
   // Check if email or password or name are provided as empty strings
   if (email === "" || password === "" || name === "") {
-    res.json({ message: "Provide email, password and name" });
+    res.json({ message: "Provide email, password, and name" });
     return;
   }
 
@@ -119,13 +119,29 @@ router.post("/login", (req, res, next) => {
 });
 
 // GET  /auth/verify  -  Used to verify JWT stored on the client
-router.get("/verify", isAuthenticated, (req, res, next) => {
+router.post("/verify", isAuthenticated, (req, res, next) => {
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and is made available on `req.payload`
-  console.log(`req.payload`, req.payload);
+  // console.log(`req.payload`, req.payload);
+  req.session.currentUser = req.payload;
+
 
   // Send back the token payload object containing the user data
   res.json(req.payload);
 });
+
+router.get("/currentUser", (req, res, next) => {
+  console.log("Current user:", req.session.currentUser);
+  res.json(req.session.currentUser);
+});
+
+router.get("/logout", (req, res, next) =>{
+  if(req.session.currentUser){
+    req.session.currentUser = null;
+    req.session.destroy();
+    res.json({message: "Successfully logged out."})
+  } 
+});
+
 
 module.exports = router;

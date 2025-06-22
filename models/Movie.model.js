@@ -19,15 +19,19 @@ const movieSchema = new Schema(
       type: String
     },
     rating:{
-        type: Number,
+      type: Number,
         default: 0,
     },
     cast:[{
-        type: String
+      type: String
     }],
     directors:[{
-        type: String
-    }]
+      type: String
+    }],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
